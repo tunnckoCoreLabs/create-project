@@ -75,7 +75,7 @@ export default async function createProject({ exists = false } = {}) {
           'git commit -s -S -m "feat: initial release"',
           `git remote add origin git@github.com:${ctx.answers.repository}.git`,
           'git remote -v',
-          'git push origin master --force',
+          'git push --set-upstream origin master --force',
         ],
         { cwd: ctx.answers.path },
       ),
