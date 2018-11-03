@@ -11,17 +11,29 @@
     "node": "^8.11.0 || >=10.13.0"
   },
   "dependencies": {
-    "esm": "^3.0.84"
+    "@tunnckocore/execa": "^2.1.1",
+    "axios": "^0.18.0",
+    "charlike": "^2.0.9",
+    "esm": "^3.0.84",
+    "parse-git-config": "^2.0.3",
+    "prompts": "^1.2.0",
+    "set-value": "^3.0.0",
+    "signale": "^1.3.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^0.5.1",
+    "@tunnckocore/config": "^0.4.0",
     "@tunnckocore/scripts": "^1.0.1",
     "asia": "^0.19.7"
   },
   "files": [
     "src",
-    "index.js"
+    "index.js",
+    "cli.js"
   ],
+  "bin": {
+    "create-project": "cli.js",
+    "tunnckocore-create-project": "cli.js"
+  },
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
@@ -52,7 +64,13 @@
         "asia",
         "charlike",
         "docks",
-        "execa"
+        "gitcommit",
+        "@tunnckocore/execa",
+        "@tunnckocore/package-json",
+        "@tunnckocore/create-project",
+        "@tunnckocore/update",
+        "@tunnckocore/config",
+        "@tunnckocore/scripts"
       ]
     },
     "lint": {
