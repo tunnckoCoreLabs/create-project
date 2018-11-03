@@ -1,0 +1,66 @@
+{
+  "name": "@tunnckocore/create-project",
+  "description": "Create and scaffold a new project, its GitHub repository and contents",
+  "license": "Apache-2.0",
+  "licenseStart": "2018",
+  "scripts": {
+    "start": "tunnckocore-scripts",
+    "extends": "@tunnckocore/config/scripts"
+  },
+  "engines": {
+    "node": "^8.11.0 || >=10.13.0"
+  },
+  "dependencies": {
+    "esm": "^3.0.84"
+  },
+  "devDependencies": {
+    "@tunnckocore/config": "^0.5.1",
+    "@tunnckocore/scripts": "^1.0.1",
+    "asia": "^0.19.7"
+  },
+  "files": [
+    "src",
+    "index.js"
+  ],
+  "main": "index.js",
+  "module": "src/index.js",
+  "typings": "src/index.d.ts",
+  "version": "0.0.0",
+  "repository": "tunnckoCoreLabs/create-project",
+  "homepage": "https://github.com/tunnckoCoreLabs/create-project",
+  "author": "Charlike Mike Reagent (https://tunnckocore.com)",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "renovate": {
+    "extends": "tunnckocore"
+  },
+  "verb": {
+    "run": true,
+    "toc": {
+      "render": true,
+      "method": "preWrite",
+      "maxdepth": 4
+    },
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "related": {
+      "list": [
+        "asia",
+        "charlike",
+        "docks",
+        "execa"
+      ]
+    },
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": [
+      "new-release",
+      "semantic-release"
+    ]
+  }
+}
