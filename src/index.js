@@ -7,8 +7,8 @@ import signale from 'signale';
 import charlike from 'charlike';
 import setValue from 'set-value';
 import { exec } from '@tunnckocore/execa';
+import enableCircleCI from '@tunnckocore/circleci';
 import createGithubRelease from './create-release';
-import enableCircleCI from './enable-circleci';
 import runQuestions from './questions';
 
 /* eslint-disable no-param-reassign, promise/always-return */
@@ -66,7 +66,9 @@ export default async function createProject(initialVersion = '0.0.0') {
       }),
     )
     .then(() => signale.info('Enabling CircleCI integration ...'))
-    .then(() => enableCircleCI(ctx.answers))
+    .then(
+      () => ctx.answers.author.circleci_token && enableCircleCI(ctx.answers),
+    )
     .then(() =>
       signale.info(`Publishing version v${initialVersion} to NPM ...`),
     )

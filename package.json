@@ -16,6 +16,7 @@
     "node": "^8.11.0 || >=10.13.0"
   },
   "dependencies": {
+    "@tunnckocore/circleci": "^0.2.1",
     "@tunnckocore/execa": "^2.1.1",
     "axios": "^0.18.0",
     "charlike": "^3.1.8",
