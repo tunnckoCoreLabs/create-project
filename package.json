@@ -4,6 +4,7 @@
   "license": "Apache-2.0",
   "licenseStart": "2018",
   "scripts": {
+    "cli": "node cli",
     "start": "tunnckocore-scripts",
     "extends": "@tunnckocore/config/scripts",
     "docs": "tunnckocore-scripts docs",
@@ -17,8 +18,9 @@
   "dependencies": {
     "@tunnckocore/execa": "^2.1.1",
     "axios": "^0.18.0",
-    "charlike": "^3.0.0",
+    "charlike": "^3.1.8",
     "esm": "^3.0.84",
+    "mri": "^1.1.1",
     "parse-git-config": "^2.0.3",
     "prompts": "^1.2.0",
     "set-value": "^3.0.0",

@@ -3,14 +3,14 @@ import axios from 'axios';
 import parse from 'parse-git-config';
 
 // TODO: externalize
-export default async function createGithubRepo(opts) {
+export default async function createGithubRepo(opts, initialVersion = '0.0.0') {
   const options = Object.assign(
     {
-      tag_name: 'v0.0.0',
-      body: 'Initial release, just after the first commit',
+      tag_name: `v${initialVersion}`,
+      body: 'Initial GitHub Release',
     },
     opts,
-    { name: 'v0.0.0' },
+    { name: `v${initialVersion}` },
   );
 
   let githubToken =

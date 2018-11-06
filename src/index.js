@@ -13,7 +13,7 @@ import runQuestions from './questions';
 
 /* eslint-disable no-param-reassign, promise/always-return */
 
-export default async function createProject({ exists = false } = {}) {
+export default async function createProject(initialVersion = '0.0.0') {
   const cwd = proc.cwd();
   const cacheFile = path.join(
     os.homedir(),
@@ -27,7 +27,7 @@ export default async function createProject({ exists = false } = {}) {
 
   const ctx = {};
 
-  return runQuestions(cache, exists)
+  return runQuestions(cache)
     .then((answers) => {
       ctx.answers = answers;
       return answers;
@@ -37,7 +37,7 @@ export default async function createProject({ exists = false } = {}) {
       ctx.answers.path = path.join(cwd, ctx.answers.repo);
 
       const author = {};
-      const { data } = await createGithubRelease(ctx.answers);
+      const { data } = await createGithubRelease(ctx.answers, initialVersion);
 
       Object.keys(data.author).map((key) =>
         setValue(author, key, data.author[key]),
@@ -54,17 +54,22 @@ export default async function createProject({ exists = false } = {}) {
         github_token: c.github_token,
       };
 
+      ctx.answers.version = initialVersion;
       ctx.answers.repository = `${ctx.answers.owner}/${ctx.answers.repo}`;
     })
     .then(() => signale.info('Scaffolding project locally ...'))
     .then(() =>
-      charlike(ctx.answers.name, ctx.answers.description, {
+      charlike({
+        project: ctx.answers.project,
+        repo: ctx.answers.repo,
         locals: ctx.answers,
       }),
     )
     .then(() => signale.info('Enabling CircleCI integration ...'))
     .then(() => enableCircleCI(ctx.answers))
-    .then(() => signale.info('Publishing initial v0.0.0 to NPM ...'))
+    .then(() =>
+      signale.info(`Publishing version v${initialVersion} to NPM ...`),
+    )
     .then(() => exec('npm publish', { cwd: ctx.answers.path }))
     .then(() => signale.info('Pushing the local git repository to GitHub ...'))
     .then(() =>
@@ -72,7 +77,7 @@ export default async function createProject({ exists = false } = {}) {
         [
           'git init',
           'git add --all',
-          'git commit -s -S -m "feat: initial release"',
+          'git commit -s -S -m "feat: initial GitHub release"',
           `git remote add origin git@github.com:${ctx.answers.repository}.git`,
           'git remote -v',
           'git push --set-upstream origin master --force',

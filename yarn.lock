@@ -143,6 +143,15 @@
     p-map-series "^1.0.0"
     split-cmd "^1.0.0"
 
+"@tunnckocore/package-json@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/package-json/-/package-json-0.3.1.tgz#254cbce4b33f5d8bfab098c63033385ab748d4f2"
+  integrity sha512-hVaCtkNamSMPfjtK04miuUPDE6/vj0oZfuzQJYY+tJ7wGKhhQq5I//TtbL128bQvyDX5ivs8dPb03gclYU2bhA==
+  dependencies:
+    axios "^0.18.0"
+    esm "^3.0.84"
+    parse-package-name "^0.1.0"
+
 "@tunnckocore/scripts@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.1.0.tgz#52fa83dcbb6ebff1880569186421c2851b976ed9"
@@ -541,11 +550,12 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-charlike@^3.0.0:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/charlike/-/charlike-3.1.3.tgz#6187d4e76f9d5d3e77eaad001fd31bae0e79fe81"
-  integrity sha512-fgOkpT0xlcVFkS8sM5DQGtPvF7mDOaJ/cyQgiq9I/d9qU/YOgfKjbqPFKX6gtMaS/itSBg361pyaYuhFf58r3Q==
+charlike@^3.1.8:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/charlike/-/charlike-3.1.8.tgz#49537154a1fb891510d428d393cfd0da08c3b674"
+  integrity sha512-ECXIM8FOxGGjleRDGzLsFxqshfWdU7lSihi4gXSPqN6SGEGSkYon1EQjc4e6vGCQrSZA7hfEZE5L0tC8Pdam1A==
   dependencies:
+    "@tunnckocore/package-json" "^0.3.1"
     arrify "^1.0.1"
     esm "^3.0.84"
     fast-glob "^2.2.3"
@@ -3057,6 +3067,11 @@ parse-ms@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/parse-ms/-/parse-ms-1.0.1.tgz#56346d4749d78f23430ca0c713850aef91aa361d"
   integrity sha1-VjRtR0nXjyNDDKDHE4UK75GqNh0=
+
+parse-package-name@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/parse-package-name/-/parse-package-name-0.1.0.tgz#3f44dd838feb4c2be4bf318bae4477d7706bade4"
+  integrity sha1-P0Tdg4/rTCvkvzGLrkR313BrreQ=
 
 parse-passwd@^1.0.0:
   version "1.0.0"

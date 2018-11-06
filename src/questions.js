@@ -4,7 +4,7 @@ import prompts from 'prompts';
 import signale from 'signale';
 import createGithubRepo from './create-repo';
 
-export default async function runQuestions(cache, repoExists) {
+export default async function runQuestions(cache) {
   const answers = {};
   if (!cache.gitconfig) {
     // eslint-disable-next-line no-param-reassign
@@ -17,6 +17,9 @@ export default async function runQuestions(cache, repoExists) {
     }
     setValue(answers, prompt.name, answer);
   }
+  function onCancel() {
+    throw new Error('Exiting...');
+  }
 
   signale.info('Basic questions ...');
 
@@ -25,6 +28,16 @@ export default async function runQuestions(cache, repoExists) {
   return prompts
     .prompt(
       [
+        {
+          type: 'select',
+          name: 'ownerType',
+          message: 'Owner is an organization or an user?',
+          choices: [
+            { title: 'User', value: 'user' },
+            { title: 'Organization', value: 'org' },
+          ],
+          initial: cache.ownerType === 'org' ? 1 : 0,
+        },
         {
           type: 'text',
           name: 'owner',
@@ -39,55 +52,62 @@ export default async function runQuestions(cache, repoExists) {
         },
         {
           type: 'text',
-          name: 'homepage',
+          name: 'project.homepage',
           message: "What's your project homepage?",
-          initial: (x, values) =>
-            `https://github.com/${values.owner}/${values.repo}`,
+          initial: () => `https://github.com/${answers.owner}/${answers.repo}`,
         },
         {
           type: 'text',
-          name: 'description',
+          name: 'project.description',
           message: "What's your project description?",
-          initial: cache.description,
+          initial: cache.project && cache.project.description,
         },
         {
           type: 'text',
           name: 'author.github_token',
           message: "What's your GitHub token? (only stored locally)",
-          initial: cache.author.github_token,
+          initial: cache.author && cache.author.github_token,
         },
         {
           type: 'text',
           name: 'author.circleci_token',
           message: "What's your CircleCI token? (only stored locally)",
-          initial: cache.author.circleci_token,
+          initial: cache.author && cache.author.circleci_token,
         },
       ],
-      { onSubmit },
+      { onSubmit, onCancel },
     )
     .then(() => signale.info('Creating GitHub repository ...'))
-    .then(() => repoExists || createGithubRepo(answers))
+    .then(
+      () => createGithubRepo(answers),
+      (err) => {
+        if (err.statusCode === 422) {
+          throw new Error('Repository may already exist. Exiting...');
+        }
+        throw err;
+      },
+    )
     .then(() => signale.info('Project and author metadata ...'))
     .then(() =>
       prompts.prompt(
         [
           {
             type: 'text',
-            name: 'name',
+            name: 'project.name',
             message: "What's the package name?",
-            initial: cache.name,
+            initial: cache.project && cache.project.name,
           },
           {
             type: 'text',
             name: 'license.name',
             message: "What's the project license?",
-            initial: 'Apache-2.0',
+            initial: (cache.license && cache.license.name) || 'Apache-2.0',
           },
           {
             type: 'text',
             name: 'license.year',
             message: "What's the license start year?",
-            initial: '2018',
+            initial: (cache.license && cache.license.year) || '2018',
           },
           {
             type: 'text',
@@ -120,7 +140,7 @@ export default async function runQuestions(cache, repoExists) {
             initial: cache.author && cache.author.twitter,
           },
         ],
-        { onSubmit },
+        { onSubmit, onCancel },
       ),
     )
     .then(() => answers);

@@ -24,10 +24,17 @@ export default async function createGithubRepo(opts) {
     throw new Error('Requires GitHub token, but not found.');
   }
 
-  options.name = options.repo;
+  options.name = options.repo || options.name;
+  options.homepage = options.project && options.project.homepage;
+  options.description = options.project && options.project.description;
+
+  const endpoint =
+    options.ownerType === 'org'
+      ? `/orgs/${options.owner}/repos`
+      : `/user/repos`;
 
   return axios({
-    url: `https://api.github.com/orgs/${options.owner}/repos`,
+    url: `https://api.github.com${endpoint}`,
     method: 'post',
     headers: {
       Authorization: `token ${githubToken}`,
