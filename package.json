@@ -5,7 +5,11 @@
   "licenseStart": "2018",
   "scripts": {
     "start": "tunnckocore-scripts",
-    "extends": "@tunnckocore/config/scripts"
+    "extends": "@tunnckocore/config/scripts",
+    "docs": "tunnckocore-scripts docs",
+    "lint": "tunnckocore-scripts lint",
+    "test": "tunnckocore-scripts test",
+    "commit": "tunnckocore-scripts commit"
   },
   "engines": {
     "node": "^8.11.0 || >=10.13.0"
@@ -21,8 +25,8 @@
     "signale": "^1.3.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^0.5.0",
-    "@tunnckocore/scripts": "^1.0.1",
+    "@tunnckocore/config": "^0.5.1",
+    "@tunnckocore/scripts": "^1.1.0",
     "asia": "^0.19.7"
   },
   "files": [
@@ -30,14 +34,10 @@
     "index.js",
     "cli.js"
   ],
-  "bin": {
-    "create-project": "cli.js",
-    "tunnckocore-create-project": "cli.js"
-  },
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
-  "version": "0.0.0",
+  "version": "0.2.2",
   "repository": "tunnckoCoreLabs/create-project",
   "homepage": "https://github.com/tunnckoCoreLabs/create-project",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
@@ -80,5 +80,9 @@
       "new-release",
       "semantic-release"
     ]
+  },
+  "bin": {
+    "create-project": "cli.js",
+    "tunnckocore-create-project": "cli.js"
   }
 }
