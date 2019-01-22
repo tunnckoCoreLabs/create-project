@@ -141,15 +141,10 @@
     p-map-series "1.0.0"
     split-cmd "^1.0.0"
 
-"@tunnckocore/execa@^2.1.1":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/execa/-/execa-2.1.2.tgz#c60dcc49ffbe8edb06211db966dda05eb2318186"
-  integrity sha512-uV3ocBiZurQajYx8mIqlg8mTDaoOH2Wp2HDqUUHMLEn2AArXK99BF1Cac6FYpj7m7IVXOP94mOWvjK5c8Aa+Bg==
-  dependencies:
-    esm "^3.0.84"
-    execa "^1.0.0"
-    p-map-series "^1.0.0"
-    split-cmd "^1.0.0"
+"@tunnckocore/execa@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/execa/-/execa-3.0.0.tgz#b5efae1e6179235b863439871d64134310e357a2"
+  integrity sha512-O8xqUx0thraoH9EqQ3Pxv7Qy40Eo2r75G71Km2CLXd5qYPJ6S/tnkLnlkGqCcKZuXQTXfMe2PHFDA6C1eg/0oQ==
 
 "@tunnckocore/package-json@^0.3.1":
   version "0.3.1"
