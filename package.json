@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@tunnckocore/circleci": "^0.2.1",
-    "@tunnckocore/execa": "^4.0.0",
+    "@tunnckocore/execa": "^5.0.0",
     "axios": "^0.19.0",
     "charlike": "^3.1.8",
     "esm": "^3.0.84",
